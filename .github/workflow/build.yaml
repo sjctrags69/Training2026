@@ -1,0 +1,37 @@
+name: Java CI with Maven (Windows)
+
+on:
+  push:
+    branches: [ "main" ]
+  pull_request:
+    branches: [ "main" ]
+
+jobs:
+  build:
+    runs-on: windows-latest
+
+    steps:
+      # Step 1: Check out the repository code
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      # Step 2: Set up Java 21 using Eclipse Temurin
+      - name: Set up JDK 21 (Eclipse Temurin)
+        uses: actions/setup-java@v4
+        with:
+          java-version: '21'
+          distribution: 'temurin'
+          cache: 'maven' # Change to 'gradle' if using Gradle
+
+      # Step 3: Verify Java installation
+      - name: Check Java version
+        run: java -version
+
+      # Step 4: Build the project
+      # Option A: Maven (use 'mvnw.cmd' if using the Maven Wrapper)
+      - name: Build with Maven
+        run: mvn --batch-mode clean package
+
+      # Option B: Gradle (uncomment if using Gradle)
+      # - name: Build with Gradle
+      #   run: .\gradlew.bat build
