@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Configuration name="FETPConfig" status="WARN">
+   <Appenders>
+      <Console name="RCONSL" target="SYSTEM_OUT">
+          <PatternLayout pattern="%d [%t - %r] %msg%n" />
+      </Console>
+      <File name="FETPFILE" fileName="src/files/math.log">
+      	 <PatternLayout pattern="%M - %p - %msg%n" charset="UTF-8"/>
+      </File>
+   </Appenders>
+   <Loggers>
+      <Logger name="fetpLogger" level="INFO" >
+          <AppenderRef ref="FETPFILE" />
+      </Logger>
+      <Root level="INFO">
+         <AppenderRef ref="RCONSL" />
+      </Root>
+   </Loggers>
+</Configuration>

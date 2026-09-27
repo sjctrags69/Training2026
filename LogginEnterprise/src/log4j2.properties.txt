@@ -1,0 +1,47 @@
+name=FETPConfig
+status=WARN
+# Your setup
+
+appenders=sconsole, fetpfile, rootconsole
+
+appender.rootconsole.type=Console
+appender.rootconsole.name=RCONSL
+appender.rootconsole.layout.type=PatternLayout
+appender.rootconsole.layout.pattern= %d [%t - %r] %msg%n
+
+#appender.fconsole.type=Console
+#appender.fconsole.name=FETPCONSL
+# layout configuration
+#appender.fconsole.layout.type=PatternLayout
+#appender.fconsole.layout.pattern=%M - %p - %msg%n
+appender.fetpfile.type=File
+appender.fetpfile.name=FETPFILE
+appender.fetpfile.fileName=src\\files\\math.log
+appender.fetpfile.layout.type=PatternLayout
+appender.fetpfile.layout.pattern=%M - %p - %msg%n
+appender.fetpfile.layout.charset=UTF-8
+
+
+appender.sconsole.type=Console
+appender.sconsole.name=SAVECONSL
+#layout configuration
+appender.sconsole.layout.type=PatternLayout
+appender.sconsole.layout.pattern=%d{MMMM dd, yyyy - hh:mm:ss:SSS} [%p] - %msg %C%n
+
+loggers=fLogger, sLogger
+
+logger.fLogger.level=INFO
+logger.fLogger.name=fetpLogger
+logger.fLogger.appenderRefs=floggerRef
+logger.fLogger.appenderRef.floggerRef.ref=FETPFILE
+logger.fLogger.additivity=false
+
+logger.sLogger.level=INFO
+logger.sLogger.name=savingsLogger
+logger.sLogger.appenderRefs=sloggerRef
+logger.sLogger.appenderRef.sloggerRef.ref=SAVECONSL
+logger.sLogger.additivity=false
+
+rootLogger.level=INFO
+rootLogger.appenderRefs=rootRef
+rootLogger.appenderRef.rootRef.ref=RCONSL
